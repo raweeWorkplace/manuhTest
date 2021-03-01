@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "117e7db7-a76a-41d1-8aaf-13640bc19b7a",
+		"name": "Java Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Insert Single Model Class Only",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ENTITY_NAME\": \"DEPT_TBL\",\r\n  \"DISPLAY_NAME\": \"DEPARTMENT\",\r\n  \"DESCRIPTION\": \"A TABLE WHICH WILL STORE \\n ALL THE DEPARTMENT VALUE\",\r\n  \"CREATED_BY\": \"007\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/model-class.add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-class.add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Single Model Class with its Attributes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ENTITY_NAME\": \"EMP_TBL\",\r\n  \"DISPLAY_NAME\": \"EMPLOYEE\",\r\n  \"DESCRIPTION\": \"MEMBER OF EACH DEPARTMENT\",\r\n  \"CREATED_BY\": \"01010\",\r\n  \"ATTRIBUTE_LIST\": [\r\n    {\r\n      \"ATTRIBUTE_NAME\": \"EMP_NAME\",\r\n      \"DISPLAY_NAME\": \"EMPLOYEE_NAME\",\r\n      \"DATE_TYPE\": \"String\",\r\n      \"MANDITORY\": true,\r\n      \"IS_VISIBLE\": true,\r\n      \"DESCRIPTION\": \"NAME OF DEPARTMENT\",\r\n      \"UNIQUE\": false,\r\n      \"HAS_CHILD\": false,\r\n      \"CREATED_BY\": \"01010\"\r\n    },\r\n    {\r\n      \"ATTRIBUTE_NAME\": \"EMP_AGE\",\r\n      \"DISPLAY_NAME\": \"EMPLOYEE_AGE\",\r\n      \"DATE_TYPE\": \"Number\",\r\n      \"MANDITORY\": true,\r\n      \"IS_VISIBLE\": false,\r\n      \"DESCRIPTION\": \"AGE OF EMPLOYEE\",\r\n      \"UNIQUE\": false,\r\n      \"HAS_CHILD\": false,\r\n      \"CREATED_BY\": \"01010\"\r\n    },\r\n    {\r\n      \"ATTRIBUTE_NAME\": \"EMP_JOIN_DT\",\r\n      \"DISPLAY_NAME\": \"EMPLOYEE_JOIN_DATE\",\r\n      \"DATE_TYPE\": \"Date\",\r\n      \"MANDITORY\": true,\r\n      \"IS_VISIBLE\": true,\r\n      \"DESCRIPTION\": \"Joining Date\",\r\n      \"UNIQUE\": false,\r\n      \"HAS_CHILD\": false,\r\n      \"CREATED_BY\": \"01010\"\r\n    },\r\n    {\r\n      \"ATTRIBUTE_NAME\": \"EMP_ADDRESS\",\r\n      \"DISPLAY_NAME\": \"EMPLOYEE_ADDRESS\",\r\n      \"DATE_TYPE\": \"Text\",\r\n      \"MANDITORY\": false,\r\n      \"IS_VISIBLE\": true,\r\n      \"DESCRIPTION\": \"Address of Employee\",\r\n      \"UNIQUE\": false,\r\n      \"HAS_CHILD\": false,\r\n      \"CREATED_BY\": \"01010\"\r\n    },\r\n    {\r\n      \"ATTRIBUTE_NAME\": \"DEPT_ID\",\r\n      \"DISPLAY_NAME\": \"DEPARTMENT_ID\",\r\n      \"DATE_TYPE\": \"Number\",\r\n      \"MANDITORY\": true,\r\n      \"IS_VISIBLE\": true,\r\n      \"DESCRIPTION\": \"Department of Employee\",\r\n      \"UNIQUE\": false,\r\n      \"HAS_CHILD\": true,\r\n      \"CREATED_BY\": \"01010\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/model-class.add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-class.add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Attribute to Respective Model Class",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"MODEL_CLASS_ID\":\"3\",\n      \"ATTRIBUTE_NAME\": \"DEPT_NAME\",\n      \"DISPLAY_NAME\": \"DEPARTMENT_NAME\",\n      \"DATE_TYPE\": \"STRING\",\n      \"MANDITORY\": true,\n      \"IS_VISIBLE\": true,\n      \"DESCRIPTION\": \"NAME OF DEPATMENT\",\n      \"UNIQUE\": true,\n      \"HAS_CHILD\": false,\n      \"CREATED_BY\": \"01010\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/model-attribute.add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-attribute.add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Model Class by ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-class.delete?model_id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-class.delete"
+					],
+					"query": [
+						{
+							"key": "model_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Model Attribute Class by ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-attribute.delete?attr_id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-attribute.delete"
+					],
+					"query": [
+						{
+							"key": "attr_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Model Class by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-class.get?model_id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-class.get"
+					],
+					"query": [
+						{
+							"key": "model_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Model Attribute Class by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-attribute.get?attr_id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-attribute.get"
+					],
+					"query": [
+						{
+							"key": "attr_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch All Model Class",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-class-list.get",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-class-list.get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch All Model Attribute Class",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-attribute-list.get",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-attribute-list.get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Employee with Department",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"MODEL_ID\": \"3\",\n    \"MODEL_NAME\": \"EMPLOYEE\",\n    \"DETAILS\": {\n        \"EMPLOYEE_ADDRESS\": \"JANAKPUR \\n Nepal\",\n        \"CREATED_BY\": \"01010\",\n        \"EMPLOYEE_NAME\": \"Saktimaan\",\n        \"EMPLOYEE_AGE\": \"25\",\n        \"EMPLOYEE_JOIN_DATE\": \"02/12/2021\"\n    },\n    \"DEPARTMENT\": [\n        {\n            \"DEPT_ID\": \"1\",\n            \"DEPT_NAME\": \"Human Resourse\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/model-object.add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-object.add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Employee or Department",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"MODEL_ID\": \"2\",\n    \"MODEL_NAME\": \"DEPARTMENT\",\n    \"DETAILS\": {\n        \"DEPARTMENT_ADDRESS\": \"JANAKPUR \\n Nepal\",\n        \"CREATED_BY\": \"01010\",\n        \"DEPARTMENT_NAME\": \"Delivery\",\n        \"DEPARTMENT_HEAD\": \"Ravi\",\n        \"TOTAL_EMPLOYEES\": \"10\",\n        \"ESTABLISHED_DATE\": \"02/12/2021\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/model-object.add",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-object.add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Employee or Department By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/object.get?search_id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"object.get"
+					],
+					"query": [
+						{
+							"key": "search_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee or Department by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/object.delete?obj_id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"object.delete"
+					],
+					"query": [
+						{
+							"key": "obj_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee or Department",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"DEPARTMENT_NAME\": \"HR HUMAN RESOURCE\",\n    \"OBJ_ID\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/model-object.update",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-object.update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Existing Model and Its Attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-parameter-list.dummy",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-parameter-list.dummy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dummy Request Json for Model Class & Its Attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-class.dummy",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-class.dummy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dummy Request Json for Data Object",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/model-parameter-list.dummy",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"model-parameter-list.dummy"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

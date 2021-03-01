@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2021 at 10:02 PM
+-- Generation Time: Mar 01, 2021 at 10:51 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -55,7 +55,7 @@ CREATE TABLE `data_model_object_value` (
 --
 
 CREATE TABLE `date_data_value` (
-  `id` varchar(255) NOT NULL,
+  `id` varchar(75) NOT NULL,
   `data_value` datetime DEFAULT NULL,
   `model_object_value_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,6 +81,17 @@ CREATE TABLE `model_attribute` (
   `model_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `model_attribute`
+--
+
+INSERT INTO `model_attribute` (`model_attr_id`, `attribute_name`, `created_by`, `created_date`, `data_type`, `description`, `display_name`, `has_child`, `mandatory`, `is_unique`, `is_visibility`, `model_id`) VALUES
+(1, 'EMP_NAME', 1010, '2021-03-01 14:53:23', 'STRING', 'NAME OF DEPARTMENT', 'EMPLOYEE_NAME', b'0', b'1', 0, b'0', 2),
+(3, 'EMP_JOIN_DT', 1010, '2021-03-01 14:53:23', 'DATE', 'Joining Date', 'EMPLOYEE_JOIN_DATE', b'0', b'1', 0, b'0', 2),
+(4, 'EMP_ADDRESS', 1010, '2021-03-01 14:53:23', 'TEXT', 'Address of Employee', 'EMPLOYEE_ADDRESS', b'0', b'0', 0, b'0', 2),
+(5, 'DEPT_ID', 1010, '2021-03-01 14:53:23', 'NUMBER', 'Department of Employee', 'DEPARTMENT_ID', b'1', b'1', 0, b'0', 2),
+(7, 'DEPT_NAME', 1010, '2021-03-01 14:53:53', 'STRING', 'NAME OF DEPATMENT', 'DEPARTMENT_NAME', b'0', b'1', 1, b'0', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +109,14 @@ CREATE TABLE `model_name` (
   `parent_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `model_name`
+--
+
+INSERT INTO `model_name` (`model_id`, `created_by`, `created_date`, `description`, `display_name`, `entity_name`, `status`, `parent_id`) VALUES
+(2, 1010, '2021-03-01 14:53:23', 'MEMBER OF EACH DEPARTMENT', 'EMPLOYEE', 'EMP_TBL', 1, NULL),
+(3, 7, '2021-03-01 14:53:45', 'A TABLE WHICH WILL STORE \n ALL THE DEPARTMENT VALUE', 'DEPARTMENT', 'DEPT_TBL', 1, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -105,7 +124,7 @@ CREATE TABLE `model_name` (
 --
 
 CREATE TABLE `number_data_value` (
-  `id` varchar(255) NOT NULL,
+  `id` varchar(75) NOT NULL,
   `data_value` bigint(20) DEFAULT NULL,
   `model_object_value_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -117,7 +136,7 @@ CREATE TABLE `number_data_value` (
 --
 
 CREATE TABLE `string_data_value` (
-  `id` varchar(255) NOT NULL,
+  `id` varchar(75) NOT NULL,
   `data_value` varchar(500) DEFAULT NULL,
   `model_object_value_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -129,7 +148,7 @@ CREATE TABLE `string_data_value` (
 --
 
 CREATE TABLE `text_data_value` (
-  `id` varchar(255) NOT NULL,
+  `id` varchar(75) NOT NULL,
   `data_value` longtext DEFAULT NULL,
   `model_object_value_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -142,58 +161,49 @@ CREATE TABLE `text_data_value` (
 -- Indexes for table `data_model_object`
 --
 ALTER TABLE `data_model_object`
-  ADD PRIMARY KEY (`model_object_id`),
-  ADD KEY `FKtdc1e913a4a3c7ni5b0df25jv` (`model_id`);
+  ADD PRIMARY KEY (`model_object_id`);
 
 --
 -- Indexes for table `data_model_object_value`
 --
 ALTER TABLE `data_model_object_value`
-  ADD PRIMARY KEY (`model_object_value_id`),
-  ADD KEY `FKh9tegv6dxwjdd5ud2hle0p9i9` (`model_object_id`),
-  ADD KEY `FKpn7sbt4b4io8w9babc5v3ijb` (`model_attr_id`);
+  ADD PRIMARY KEY (`model_object_value_id`);
 
 --
 -- Indexes for table `date_data_value`
 --
 ALTER TABLE `date_data_value`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKqscjg327gpgu356666c4kww71` (`model_object_value_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `model_attribute`
 --
 ALTER TABLE `model_attribute`
-  ADD PRIMARY KEY (`model_attr_id`),
-  ADD KEY `FK8k5vhgues1q657xv457l0aga6` (`model_id`);
+  ADD PRIMARY KEY (`model_attr_id`);
 
 --
 -- Indexes for table `model_name`
 --
 ALTER TABLE `model_name`
-  ADD PRIMARY KEY (`model_id`),
-  ADD KEY `FKeb43bh0nvsfawpp8uj1s0ygp4` (`parent_id`);
+  ADD PRIMARY KEY (`model_id`);
 
 --
 -- Indexes for table `number_data_value`
 --
 ALTER TABLE `number_data_value`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKgucxrthlenk7c4j41cb3ox6ay` (`model_object_value_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `string_data_value`
 --
 ALTER TABLE `string_data_value`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK2a3qi93bhaf4270pslegbnap2` (`model_object_value_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `text_data_value`
 --
 ALTER TABLE `text_data_value`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK72f78dkqe5g8go232h2vu7ryq` (`model_object_value_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -215,66 +225,13 @@ ALTER TABLE `data_model_object_value`
 -- AUTO_INCREMENT for table `model_attribute`
 --
 ALTER TABLE `model_attribute`
-  MODIFY `model_attr_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `model_attr_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `model_name`
 --
 ALTER TABLE `model_name`
-  MODIFY `model_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `data_model_object`
---
-ALTER TABLE `data_model_object`
-  ADD CONSTRAINT `FKtdc1e913a4a3c7ni5b0df25jv` FOREIGN KEY (`model_id`) REFERENCES `model_name` (`model_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `data_model_object_value`
---
-ALTER TABLE `data_model_object_value`
-  ADD CONSTRAINT `FKh9tegv6dxwjdd5ud2hle0p9i9` FOREIGN KEY (`model_object_id`) REFERENCES `data_model_object` (`model_object_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FKpn7sbt4b4io8w9babc5v3ijb` FOREIGN KEY (`model_attr_id`) REFERENCES `model_attribute` (`model_attr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `date_data_value`
---
-ALTER TABLE `date_data_value`
-  ADD CONSTRAINT `FKqscjg327gpgu356666c4kww71` FOREIGN KEY (`model_object_value_id`) REFERENCES `data_model_object_value` (`model_object_value_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `model_attribute`
---
-ALTER TABLE `model_attribute`
-  ADD CONSTRAINT `FK8k5vhgues1q657xv457l0aga6` FOREIGN KEY (`model_id`) REFERENCES `model_name` (`model_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `model_name`
---
-ALTER TABLE `model_name`
-  ADD CONSTRAINT `FKeb43bh0nvsfawpp8uj1s0ygp4` FOREIGN KEY (`parent_id`) REFERENCES `model_name` (`model_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `number_data_value`
---
-ALTER TABLE `number_data_value`
-  ADD CONSTRAINT `FKgucxrthlenk7c4j41cb3ox6ay` FOREIGN KEY (`model_object_value_id`) REFERENCES `data_model_object_value` (`model_object_value_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `string_data_value`
---
-ALTER TABLE `string_data_value`
-  ADD CONSTRAINT `FK2a3qi93bhaf4270pslegbnap2` FOREIGN KEY (`model_object_value_id`) REFERENCES `data_model_object_value` (`model_object_value_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `text_data_value`
---
-ALTER TABLE `text_data_value`
-  ADD CONSTRAINT `FK72f78dkqe5g8go232h2vu7ryq` FOREIGN KEY (`model_object_value_id`) REFERENCES `data_model_object_value` (`model_object_value_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  MODIFY `model_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
